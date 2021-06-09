@@ -5,13 +5,15 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 - Adjust Level
 - Adjust Money
 - Adjust Golden Keys
-- Infinite Health and Shields Toggle (Inf Ammo coming soon...)
+- Infinite Health , Shields & Ammo Toggle
 - Infinite Everything Toggle ... (I mean EVERYTHING (besides ammo ... and skill time))
-- Press Numpad 0 to Refill Health and Shields
-
+- Press Numpad 0 to Refill Health , Shields & Ammo
 
 # Installation
+- Download the source code
+- Open "Borderlands GOTY Enhanced Trainer.sln"
 - Unzip contents to folder somewhere
+- Change the code to your liking or build it as is. (You will need to restore packages via nuget)
 - Start Borderlands and load into the game
 - Run "Borderlands GOTY Enhanced Trainer.exe"
 
