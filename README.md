@@ -1,4 +1,4 @@
-Borderlands GOTY Enhanced Trainer (STEAM EDITION)
+**BORDERLANDS GOTY ENHANCED TRAINER (STEAM EDITION)**
 
 ## FEATURES
 - Adjust Level
