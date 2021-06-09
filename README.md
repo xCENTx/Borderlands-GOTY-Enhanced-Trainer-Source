@@ -33,13 +33,12 @@ Borderlands GOTY Enhanced Trainer (STEAM EDITION)
 Currently Known Bugs
 ```
 Bug: Golden Keys
-Description: 
+Description: Key Amount not matching in game amount
 Possible Reason: I think this simply because the value being sent is updating to what is sent instead of adding to the previous value.
 Possible Fix: Read the value of `GoldenKeyUsed`. When sending keys from trainer , add from Total Keys Used. 
-0 Keys
-10 Keys Used
-Adding 11 Keys will give 1 key
-
+> 0 Keys
+> 10 Keys Used
+> Adding 11 Keys will give 1 key
 ```
 - If you encounter any bugs, open an issue
 - You may also send me suggestions
