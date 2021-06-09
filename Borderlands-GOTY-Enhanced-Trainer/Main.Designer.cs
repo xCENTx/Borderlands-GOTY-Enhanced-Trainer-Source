@@ -81,7 +81,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.ShieldLabel.AutoSize = true;
             this.ShieldLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShieldLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.ShieldLabel.Location = new System.Drawing.Point(155, 60);
+            this.ShieldLabel.Location = new System.Drawing.Point(151, 60);
             this.ShieldLabel.Name = "ShieldLabel";
             this.ShieldLabel.Size = new System.Drawing.Size(62, 20);
             this.ShieldLabel.TabIndex = 1;
@@ -97,7 +97,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.MoneyLabel.AutoSize = true;
             this.MoneyLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MoneyLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.MoneyLabel.Location = new System.Drawing.Point(155, 20);
+            this.MoneyLabel.Location = new System.Drawing.Point(151, 20);
             this.MoneyLabel.Name = "MoneyLabel";
             this.MoneyLabel.Size = new System.Drawing.Size(62, 20);
             this.MoneyLabel.TabIndex = 3;
@@ -120,7 +120,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.CurrentLvLabel.AutoSize = true;
             this.CurrentLvLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentLvLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.CurrentLvLabel.Location = new System.Drawing.Point(155, 0);
+            this.CurrentLvLabel.Location = new System.Drawing.Point(151, 0);
             this.CurrentLvLabel.Name = "CurrentLvLabel";
             this.CurrentLvLabel.Size = new System.Drawing.Size(62, 20);
             this.CurrentLvLabel.TabIndex = 7;
@@ -143,7 +143,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.HealthLabel.AutoSize = true;
             this.HealthLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HealthLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.HealthLabel.Location = new System.Drawing.Point(155, 40);
+            this.HealthLabel.Location = new System.Drawing.Point(151, 40);
             this.HealthLabel.Name = "HealthLabel";
             this.HealthLabel.Size = new System.Drawing.Size(59, 20);
             this.HealthLabel.TabIndex = 5;
@@ -166,7 +166,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.XPLabel.AutoSize = true;
             this.XPLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.XPLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.XPLabel.Location = new System.Drawing.Point(155, 80);
+            this.XPLabel.Location = new System.Drawing.Point(151, 80);
             this.XPLabel.Name = "XPLabel";
             this.XPLabel.Size = new System.Drawing.Size(62, 20);
             this.XPLabel.TabIndex = 15;
@@ -189,7 +189,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.GoldenKeysLabel.AutoSize = true;
             this.GoldenKeysLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GoldenKeysLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.GoldenKeysLabel.Location = new System.Drawing.Point(155, 120);
+            this.GoldenKeysLabel.Location = new System.Drawing.Point(151, 120);
             this.GoldenKeysLabel.Name = "GoldenKeysLabel";
             this.GoldenKeysLabel.Size = new System.Drawing.Size(65, 20);
             this.GoldenKeysLabel.TabIndex = 13;
@@ -212,7 +212,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.SkillPointsLabel.AutoSize = true;
             this.SkillPointsLabel.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SkillPointsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.SkillPointsLabel.Location = new System.Drawing.Point(155, 100);
+            this.SkillPointsLabel.Location = new System.Drawing.Point(151, 100);
             this.SkillPointsLabel.Name = "SkillPointsLabel";
             this.SkillPointsLabel.Size = new System.Drawing.Size(70, 20);
             this.SkillPointsLabel.TabIndex = 11;
@@ -382,6 +382,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             // 
             // NoClipTimer
             // 
+            this.NoClipTimer.Interval = 1;
             this.NoClipTimer.Tick += new System.EventHandler(this.NoClipTimer_Tick);
             // 
             // checkBox2

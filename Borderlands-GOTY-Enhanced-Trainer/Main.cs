@@ -19,6 +19,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
 
         //Offsets
+
         public static class Offsets
         {
             //Player Info
@@ -37,27 +38,30 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             public const string XPMultiplier = "0x025C1D90,0x68,0x550,0x1F8,0x358,0x268,0x194";             //Float
             public const string MaxXP = "0x025C1D90,0x68,0x550,0x1F8,0x358,0x268,0x80";                     //Float
 
+            //Player Position (Working so far)
+            public const string CameraPitch = "0x02555AA8,0xC4,0x630,0x10,0x9C";            //Int
+            public const string CameraYaw = "0x02555AA8,0xC4,0x630,0x10,0xA0";              //Int
+            public const string PlayerX = "0x025C1DA0,0x18,0x40,0x90";                      //Float
+            public const string PlayerY = "0x025C1DA0,0x18,0x40,0x94";                      //Float
+            public const string PlayerZ = "0x025C1DA0,0x18,0x40,0x98";                      //Float
+
             //Player Ammo
-            public const string RevolverAmmo = "0x02542680,98";                     //Float
-            public const string RevolverAmmoMax = "0x02542680,80";                  //Float
-            public const string SMGAmmo = "0x02542678,98";                          //Float
-            public const string SMGAmmoMax = "0x02542678,80";		                //Float
-            public const string CarbineAmmo = "0x02542690,0x98";                    //Float
-            public const string CarbineAmmoMax = "0x02542690,0x80";		            //Float
-            public const string ShotgunShells = "0x02542670,98";                    //Float
-            public const string ShotgunShellsMax = "0x02542670,80";	                //Float
-            public const string SniperRifleAmmo = "0x02542668,98";	                //Float
-            public const string SniperRifleAmmoMax = "0x02542668,80";               //Float
+            public const string RevolverAmmo = "0x02542680,98";                             //Float
+            public const string RevolverAmmoMax = "0x02542680,80";                          //Float
+            public const string SMGAmmo = "0x02542678,98";                                  //Float
+            public const string SMGAmmoMax = "0x02542678,80";		                        //Float
+            public const string CarbineAmmo = "0x02542690,0x98";                            //Float
+            public const string CarbineAmmoMax = "0x02542690,0x80";		                    //Float
+            public const string ShotgunShells = "0x02542670,98";                            //Float
+            public const string ShotgunShellsMax = "0x02542670,80";	                        //Float
+            public const string SniperRifleAmmo = "0x02542668,98";	                        //Float
+            public const string SniperRifleAmmoMax = "0x02542668,80";                       //Float
             public const string Grenades = "0x025C1D90,0x50,0x280,0x98";					//Float
             public const string GrenadesMax = "0x025C1D90,0x50,0x280,0x80";                 //Float
             public const string RepeaterPistolAmmo = "0x025C1D90,0x50,0x2A0,0x98";		    //Float
-            public const string RepeaterPistolMax = "0x025C1D90,0x50,0x2A0,0x80";			//Float
-
-            //WORK IN PROGRESS
-            //public const string LauncherAmmo = "0x025C1D90,0x68,0x550,0x1F8,0x364,0x8568";                //Float
-            //public const string LauncherAmmoMax = "0x025C1D90,0x68,0x550,0x1F8,0x364,0x8550";				//Float
-            //public const string UnknownAmmoType = "0x025C1D90,0x68,0x550,0x1F8,0x364,0x78E8";				//Float
-            //public const string UnknownAmmoTypeMax = "0x025C1D90,0x68,0x550,0x1F8,0x364,0x78D0";			//Float
+            public const string RepeaterPistolMax = "0x025C1D90,0x50,0x2A0,0x80";           //Float
+            public const string LauncherAmmo = "0x02542660,0x98";                           //Float
+            public const string LauncherAmmoMax = "0x02542660,0x80";				        //Float
         }
         #endregion
 
@@ -104,7 +108,16 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         //No Clip Timer
         private void NoClipTimer_Tick(object sender, EventArgs e)
         {
+            var PlayerXPos = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.PlayerX}");
+            var PlayerYPos = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.PlayerY}");
+            var PlayerZPos = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.PlayerZ}");
 
+            //Fly (Working ... Disabled for now)
+            if (GetAsyncKeyState(Keys.Space) < 0)
+            {
+                //var newValue = PlayerZPos + 50;
+                //m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            }
         }
 
         //Numpad Functions
@@ -121,8 +134,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
             var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
             var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
-            //var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
-            //var maxValueUnknownType = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.UnknownAmmoTypeMax}");
+            var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
 
             //Refill Health, Shields and Ammo (NUMPAD 0)
             if (GetAsyncKeyState(Keys.NumPad0) < 0)
@@ -138,8 +150,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}", "float", maxValueSMG.ToString());
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
-                //m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
-                //m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.UnknownAmmoType}", "float", maxValueUnknownType.ToString());
+                m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
             }
         }
 
@@ -265,16 +276,14 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
                 var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
                 var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
-                //var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
-                //var maxValueUnknownType = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.UnknownAmmoTypeMax}");
+                var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}", "float", maxValueGrenades.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}", "float", maxValueRepeater.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}", "float", maxValueRevolver.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}", "float", maxValueSMG.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
-                //m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
-                //m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.UnknownAmmoType}", "float", maxValueUnknownType.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
 
             }
             else
@@ -290,8 +299,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}");
-                //m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}");
-                //m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.UnknownAmmoType}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}");
             }
         }
         #endregion
