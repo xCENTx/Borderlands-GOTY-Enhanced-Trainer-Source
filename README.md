@@ -1,5 +1,4 @@
-# Borderlands-GOTY-Enhanced-Trainer-Source-(STEAM EDITION)
-Simple Trainer. Highly Customizable source , currently configured to READ memory and allows the user to change some stuff as proof of concept
+# Borderlands GOTY Enhanced Trainer (STEAM EDITION)
 
 # Features
 - Adjust Level
