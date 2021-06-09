@@ -48,3 +48,6 @@ Adding 11 Keys will give 1 key
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+Forum Thread
+https://www.unknowncheats.me/forum/other-fps-games/456151-borderlands-goty-enhanced-simple-trainer.html
