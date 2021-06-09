@@ -1,6 +1,6 @@
-# Borderlands GOTY Enhanced Trainer (STEAM EDITION)
+Borderlands GOTY Enhanced Trainer (STEAM EDITION)
 
-## Features
+## FEATURES
 - Adjust Level
 - Adjust Money
 - Adjust Golden Keys
@@ -8,7 +8,7 @@
 - Infinite Everything Toggle ... (I mean EVERYTHING (besides ammo ... and skill time))
 - Press Numpad 0 to Refill Health , Shields & Ammo
 
-## Installation
+## INSTALLATION
 - Download the source code
 - Open "Borderlands GOTY Enhanced Trainer.sln"
 - Unzip contents to folder somewhere
