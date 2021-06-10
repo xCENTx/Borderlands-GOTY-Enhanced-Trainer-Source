@@ -4,7 +4,7 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 ## HOW TO USE
 - Download the source code
 - Unzip contents to folder somewhere
-- - Open "Borderlands GOTY Enhanced Trainer.sln"
+- Open "Borderlands GOTY Enhanced Trainer.sln"
 - Change the code to your liking or build it as is. (You will need to restore packages via nuget)
 - Start Borderlands and load into the game
 - Run "Borderlands GOTY Enhanced Trainer.exe"
