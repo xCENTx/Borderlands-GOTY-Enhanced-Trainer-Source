@@ -202,6 +202,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
             var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
             var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
+            var maxValueCarbine = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.CarbineAmmoMax}");
 
             //Refill Health, Shields and Ammo (NUMPAD 0) || ACTIVE ||
             if (GetAsyncKeyState(Keys.NumPad0) < 0)
@@ -218,6 +219,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
+                m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}", "float", maxValueCarbine.ToString());
             }
 
             //No Recoil Mod (NUMPAD 1 Toggle ON) || ACTIVE ||
@@ -323,61 +325,67 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         //Freeze Everything .... why not ... feel free to adjust this lol
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            //Defining Variables
+            #region
+            //Health
+            var oldHealthValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Health}");
+            var newHealthValue = oldHealthValue;
+
+            //Shields
+            var oldShieldValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Shield}");
+            var newShieldValue = oldShieldValue;
+
+            //Current Level
+            var oldLevelValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Level}");
+            var newLevelValue = oldLevelValue;
+
+            //Money
+            var oldMoneyValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Money}");
+            var newMoneyValue = oldMoneyValue;
+
+            //Experience
+            var oldXPValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Experience}");
+            var newXPValue = oldXPValue;
+
+            //SkillPoints
+            var oldSkillPointsValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.SkillPoints}");
+            var newSkillPointsValue = oldSkillPointsValue;
+
+            //Golden Keys
+            var oldKeysValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}");
+            var newKeysValue = oldKeysValue;
+
+            //Golden Keys Used
+            var oldUsedKeysValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}");
+            var newUsekdKeysValue = oldUsedKeysValue;
+
+            //Skill Cooldown Timer
+            var oldCooldownValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}");
+            var newCooldownValue = oldCooldownValue;
+
+            //Ammo
+            var maxValueGrenades = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.GrenadesMax}");
+            var maxValueRepeater = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolMax}");
+            var maxValueRevolver = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RevolverAmmoMax}");
+            var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
+            var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
+            var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
+            var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
+            var maxValueCarbine = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.CarbineAmmoMax}");
+
+            #endregion
             if (checkBox1.Checked)
             {
-                //Health
-                var oldHealthValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Health}");
-                var newHealthValue = oldHealthValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Health}", "float", newHealthValue.ToString());
-
-                //Shields
-                var oldShieldValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Shield}");
-                var newShieldValue = oldShieldValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Shield}", "float", newShieldValue.ToString());
-
-                //Current Level
-                var oldLevelValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Level}");
-                var newLevelValue = oldLevelValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Level}", "int", newLevelValue.ToString());
-
-                //Money
-                var oldMoneyValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Money}");
-                var newMoneyValue = oldMoneyValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Money}", "int", newMoneyValue.ToString());
-
-                //Experience
-                var oldXPValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Experience}");
-                var newXPValue = oldXPValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Experience}", "float", newXPValue.ToString());
-
-                //SkillPoints
-                var oldSkillPointsValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.SkillPoints}");
-                var newSkillPointsValue = oldSkillPointsValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillPoints}", "int", newSkillPointsValue.ToString());
-
-                //Golden Keys
-                var oldKeysValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}");
-                var newKeysValue = oldKeysValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}", "int", newKeysValue.ToString());
-
-                //Golden Keys Used
-                var oldUsedKeysValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}");
-                var newUsekdKeysValue = oldUsedKeysValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}", "int", newUsekdKeysValue.ToString());
-
-                //Skill Cooldown Timer
-                var oldCooldownValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}");
-                var newCooldownValue = oldCooldownValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}", "int", newCooldownValue.ToString());
-
-                //Ammo
-                var maxValueGrenades = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.GrenadesMax}");
-                var maxValueRepeater = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolMax}");
-                var maxValueRevolver = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RevolverAmmoMax}");
-                var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
-                var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
-                var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
-                var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}", "float", maxValueCarbine.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}", "float", maxValueGrenades.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}", "float", maxValueRepeater.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}", "float", maxValueRevolver.ToString());
@@ -385,7 +393,6 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
-
             }
             else //Unfreeze the values on uncheck event
             {
@@ -398,8 +405,6 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}");
-
-                //Ammo
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}");
@@ -407,32 +412,39 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}");
             }
         }
 
         //Unlimited Health , Shields and Ammo
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
+        {   
+            //Health
+            var oldHealthValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.MaxHealth}");
+            var newHealthValue = oldHealthValue;
+
+            //Shields
+            var oldShieldValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.MaxShield}");
+            var newShieldValue = oldShieldValue;
+
+            //Ammo
+            var maxValueGrenades = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.GrenadesMax}");
+            var maxValueRepeater = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolMax}");
+            var maxValueRevolver = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RevolverAmmoMax}");
+            var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
+            var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
+            var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
+            var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
+            var maxValueCarbine = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.CarbineAmmoMax}");
+
             if (checkBox2.Checked)
             {
-                //Health
-                var oldHealthValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.MaxHealth}");
-                var newHealthValue = oldHealthValue;
+                //Health & Shields
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Health}", "float", newHealthValue.ToString());
-
-                //Shields
-                var oldShieldValue = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.MaxShield}");
-                var newShieldValue = oldShieldValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Shield}", "float", newShieldValue.ToString());
 
                 //Ammo
-                var maxValueGrenades = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.GrenadesMax}");
-                var maxValueRepeater = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolMax}");
-                var maxValueRevolver = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RevolverAmmoMax}");
-                var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
-                var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
-                var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
-                var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}", "float", maxValueCarbine.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}", "float", maxValueGrenades.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}", "float", maxValueRepeater.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}", "float", maxValueRevolver.ToString());
@@ -440,7 +452,6 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
-
             }
             else
             {
@@ -456,6 +467,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}");
             }
         }
         #endregion
