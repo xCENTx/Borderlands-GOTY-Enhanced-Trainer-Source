@@ -1,13 +1,38 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Memory;
+
+///---=>xCENTx<=---\\\
+///---=>#8016<=---\\\
+
+/// <-||-FUNCTIONS-||--------------------------------------<
+/// // 
+/// No Recoil
+/// Inf Money
+/// Inf Health
+/// Inf Shields
+/// Inf Ammo
+/// Inf Golden Keys
+/// Inf Skill Points
+/// Max XP
+/// Much, Much, More ... Check Out OFFSETS (Line 48)
+/// //
+
+/// <-||-CONTROLS-||-----------------------------------------<
+/// //
+/// NUMPAD 0 = REFILL HEALTH , SHIELDS & AMMO || (Line 188)
+/// NUMPAD 1 = NO RECOIL ON || (Line 205)
+/// NUMPAD 2 = NO RECOIL OFF || (Line 216)
+/// NUMPAD 3 = ||BROKEN|| Toggle No Recoil On/Off || (Line 227)
+/// //
 
 namespace Borderlands_GOTY_Enhanced_Trainer
 {
     public partial class Main : Form
     {
-        ///Components
+        ///Imports
         #region
 
         //Memory.dll
@@ -18,7 +43,10 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
 
-        //Offsets
+        #endregion
+
+        ///Offsets
+        #region
 
         public static class Offsets
         {
@@ -62,6 +90,11 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             public const string RepeaterPistolMax = "0x025C1D90,0x50,0x2A0,0x80";           //Float
             public const string LauncherAmmo = "0x02542660,0x98";                           //Float
             public const string LauncherAmmoMax = "0x02542660,0x80";				        //Float
+
+            //No Recoil Inject Attempt
+            //Default Byte Array = F3 44 0F 59 A7 CC 0F 00 00 // mulss xmm12,[rdi+00000FCC]
+            //New Byte Array = 45 0F 57 E4 90 90 90 90 90) // xorps xmm12,xmm12 => nop,nop,nop,nop,nop
+            public const string NoRecoilInject = "0x1412B05"; //Bytes
         }
         #endregion
 
@@ -87,7 +120,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         ///Timers
         #region
 
-        // Memory Reader
+        //Memory Reader
         private void ProcessTimer_Tick(object sender, EventArgs e)
         {
             //Memory.dll x64
@@ -105,22 +138,56 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             }
         }
 
-        //No Clip Timer
+        //No Clip Timer || INACTIVE ||
         private void NoClipTimer_Tick(object sender, EventArgs e)
         {
             var PlayerXPos = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.PlayerX}");
             var PlayerYPos = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.PlayerY}");
             var PlayerZPos = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.PlayerZ}");
 
+            ///Debug
+            #region
+
             //Fly (Working ... Disabled for now)
-            if (GetAsyncKeyState(Keys.Space) < 0)
-            {
-                //var newValue = PlayerZPos + 50;
-                //m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
-            }
+            //if (GetAsyncKeyState(Keys.Space) < 0)
+            //{
+            //    var newValue = PlayerZPos + 20;
+            //    m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            //}
+
+            //if (GetAsyncKeyState(Keys.LControlKey) < 0)
+            //{
+            //    var newValue = PlayerZPos - 20;
+            //    m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            //}
+
+            //if (GetAsyncKeyState(Keys.Up) < 0)
+            //{
+            //    var newValue = PlayerXPos + 5;
+            //    m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            //}
+
+            //if (GetAsyncKeyState(Keys.Down) < 0)
+            //{
+            //    var newValue = PlayerXPos - 5;
+            //    m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            //}
+
+            //if (GetAsyncKeyState(Keys.Left) < 0)
+            //{
+            //    var newValue = PlayerYPos + 5;
+            //    m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            //}
+
+            //if (GetAsyncKeyState(Keys.Right) < 0)
+            //{
+            //    var newValue = PlayerYPos - 5;
+            //    m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.PlayerZ}", "float", newValue.ToString());
+            //}
+            #endregion
         }
 
-        //Numpad Functions
+        //Numpad Functions || 3/4 ACTIVE ||
         private void HotKeyTimer_Tick(object sender, EventArgs e)
         {
             //Health and Shields
@@ -136,7 +203,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
             var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
 
-            //Refill Health, Shields and Ammo (NUMPAD 0)
+            //Refill Health, Shields and Ammo (NUMPAD 0) || ACTIVE ||
             if (GetAsyncKeyState(Keys.NumPad0) < 0)
             {
                 //Refill Health and Shields
@@ -152,14 +219,69 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
             }
+
+            //No Recoil Mod (NUMPAD 1 Toggle ON) || ACTIVE ||
+            if (GetAsyncKeyState(Keys.NumPad1) < 0)
+            {
+                ///Debug
+                //On
+                m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "45 0F 57 E4 90 90 90 90 90");
+
+                //Off
+                //m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "F3 44 0F 59 A7 CC 0F 00 00");
+            }
+
+            //No Recoil Mod (NUMPAD 2 Toggle OFF) || ACTIVE ||
+            if (GetAsyncKeyState(Keys.NumPad2) < 0)
+            {
+                ///Debug
+                //On
+                //m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "45 0F 57 E4 90 90 90 90 90");
+
+                //Off
+                m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "F3 44 0F 59 A7 CC 0F 00 00");
+            }
+
+            //No Recoil Mod (NUMPAD 3 Toggle ON/OFF) || INACTIVE ||
+            if (GetAsyncKeyState(Keys.NumPad3) < 0)
+            {
+                ///Debug
+                #region
+                //On
+                //m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "45 0F 57 E4 90 90 90 90 90");
+
+                //Off
+                //m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "F3 44 0F 59 A7 CC 0F 00 00");
+                //--------------------------------------------------------------------------------------
+
+                //var ToggleStatus = m.ReadBytes("BorderlandsGOTY.exe+1412B05", 9);
+                //var ON = new byte[] { 0x45, 0x0F, 0x57, 0xE4, 0x90, 0x90, 0x90, 0x90, 0x90 };
+                //var OFF = new byte[] { 0xF3, 0x44, 0x0F, 0x59, 0xA7, 0xCC, 0x0F, 0x00, 0x00 };
+                
+                //if (m.ReadBytes("BorderlandsGOTY.exe+1412B05", 9) == new byte[] { 0xF3, 0x44, 0x0F, 0x59, 0xA7, 0xCC, 0x0F, 0x00, 0x00 })
+                //{
+                //    m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "45 0F 57 E4 90 90 90 90 90");
+                //}
+
+                //if (ToggleStatus == OFF)
+                //{
+                //    m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "45 0F 57 E4 90 90 90 90 90");
+                //}
+
+                //if (ToggleStatus == ON)
+                //{
+                //    m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "F3 44 0F 59 A7 CC 0F 00 00");
+                //}
+
+                #endregion
+            }
         }
-
-
         #endregion
 
         ///Buttons
         #region
 
+        //Money Button
         private void MoneyButton_Click(object sender, EventArgs e)
         {
             if (MoneyTextBox.Text != "")
@@ -168,6 +290,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             }
         }
 
+        //XP Button
         private void XPButton_Click(object sender, EventArgs e)
         {
             if (XPTextBox.Text != "")
@@ -176,8 +299,16 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             }
         }
 
+        //Golden Keys Button
         private void KeysButton_Click(object sender, EventArgs e)
         {
+            /// -----> BUG REPORT : Golden Keys
+            /// Sometimes sending keys doesnt work if player modifies Golden Keys Used offset. 
+            /// If sending keys does not work , and sending a value higher than keys used also does not work. Reset Golden Keys Used to 0
+            /// If more people have this issue I will adjust teh code to modify golden keys used as well as golden keys given . 
+            /// I think this is related to sending a fixed number of keys rather than adding to current keys total. 
+            /// More testing is required and I havebeen too busy messing with No Recoil and No Clip.
+            
             if (KeysTextBox.Text != "")
             {
                 m.WriteMemory($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}", "int", KeysTextBox.Text);
@@ -239,6 +370,22 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 var newCooldownValue = oldCooldownValue;
                 m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}", "int", newCooldownValue.ToString());
 
+                //Ammo
+                var maxValueGrenades = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.GrenadesMax}");
+                var maxValueRepeater = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolMax}");
+                var maxValueRevolver = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.RevolverAmmoMax}");
+                var maxValueSMG = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SMGAmmoMax}");
+                var maxValueShells = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.ShotgunShellsMax}");
+                var maxValueSniper = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmoMax}");
+                var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}", "float", maxValueGrenades.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}", "float", maxValueRepeater.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}", "float", maxValueRevolver.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}", "float", maxValueSMG.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
+                m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
+
             }
             else //Unfreeze the values on uncheck event
             {
@@ -251,6 +398,15 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}");
                 m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}");
+
+                //Ammo
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}");
+                m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}");
             }
         }
 
