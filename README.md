@@ -1,14 +1,7 @@
 # Borderlands GOTY Enhanced Trainer (STEAM EDITION)
 Simple Trainer. Highly Customizable source , currently configured to READ memory and allows the user to change some stuff as proof of concept
-## FEATURES
-- Adjust Level
-- Adjust Money
-- Adjust Golden Keys
-- Infinite Health , Shields & Ammo Toggle
-- Infinite Everything Toggle ... (I mean EVERYTHING (besides ammo ... and skill time))
-- Press Numpad 0 to Refill Health , Shields & Ammo
 
-## INSTALLATION
+## HOW TO USE
 - Download the source code
 - Unzip contents to folder somewhere
 - - Open "Borderlands GOTY Enhanced Trainer.sln"
@@ -16,8 +9,26 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 - Start Borderlands and load into the game
 - Run "Borderlands GOTY Enhanced Trainer.exe"
 
-## UPDATES
-6.8.21
+# Features
+- No Recoil Mod
+- Adjust Level
+- Adjust Money
+- Adjust Golden Keys
+- Infinite Health and Shields Toggle
+- Infinite Everything Toggle ... (Besides Vehicle Boost and skill time)
+
+HOTKEYS
+- NUMPAD 0 => Refill Health , Shields & Ammo
+- NUMPAD 1 => NO RECOIL (Toggle ON)
+- NUMPAD 2 => NO RECOIL (Toggle OFF)
+
+## Minor Updates
+v1.0.2 (6.10.21)
+- Infinite Everything button now includes ammo
+- Included No Recoil Hotkeys for ON and OFF (NUMPAD 1 & 2)
+- Heavily commented throughout the code to help users navigate
+
+v1.0.1 (6.8.21)
 - Added more offsets, Make sure to check out the Offsets Class!
 - Ammo for most weapon types now refill when pressing NUMPAD 0 (Health and Shields still refill as well)
 - Unlimited Health toggle now includes Unlimited Shields and Ammo for most weapon types
@@ -26,8 +37,6 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 ![image](https://user-images.githubusercontent.com/80198020/121113312-d16abd80-c7df-11eb-93a0-17420e3544a5.png)
 ![image](https://user-images.githubusercontent.com/80198020/121112725-cd8a6b80-c7de-11eb-9a9f-21d76c0c4dfa.png)
 ![image](https://user-images.githubusercontent.com/80198020/121112768-e266ff00-c7de-11eb-949f-7053271488f3.png)
-
-
 
 ## Bugs
 Currently Known Bugs
