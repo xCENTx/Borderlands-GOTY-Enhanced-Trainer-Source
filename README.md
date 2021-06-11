@@ -14,6 +14,8 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 - Adjust Level
 - Adjust Money
 - Adjust Golden Keys
+- Adjust Skill Points
+- XP Multiplier
 - Infinite Health and Shields Toggle
 - Infinite Everything Toggle ... (Besides Vehicle Boost and skill time)
 
