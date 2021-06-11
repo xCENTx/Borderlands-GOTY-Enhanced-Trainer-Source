@@ -19,11 +19,16 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 
 HOTKEYS
 - NUMPAD 0 => Refill Health , Shields & Ammo
-- NUMPAD 1 => NO RECOIL (Toggle ON)
-- NUMPAD 2 => NO RECOIL (Toggle OFF)
+- NUMPAD 1 => NO RECOIL (Toggle ON / OFF)
 
 ## Minor Updates
-v1.0.2 (6.10.21)
+v1.0.3 (6.10.21)
+- No Recoil Toggle
+- Adjust XP Multiplier 
+- Adjust Skill Points
+- Bug Fixes
+
+v1.0.2 (6.9.21)
 - Infinite Everything button now includes ammo
 - Included No Recoil Hotkeys for ON and OFF (NUMPAD 1 & 2)
 - Heavily commented throughout the code to help users navigate
