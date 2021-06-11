@@ -46,7 +46,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.SkillPointsLabel = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pnl_GAMEDetected = new System.Windows.Forms.Panel();
+            this.pnl_XPstatus = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.MoneyTextBox = new System.Windows.Forms.TextBox();
             this.MoneyButton = new System.Windows.Forms.Button();
@@ -61,7 +61,18 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.HotKeyTimer = new System.Windows.Forms.Timer(this.components);
             this.NoClipTimer = new System.Windows.Forms.Timer(this.components);
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.SkillPointsButton = new System.Windows.Forms.Button();
+            this.SkillpointstextBox = new System.Windows.Forms.TextBox();
+            this.XPMultiplyComboBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pnl_NoRecoil = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -234,7 +245,6 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(103)))), ((int)(((byte)(0)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.pnl_GAMEDetected);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.XPLabel);
             this.panel1.Controls.Add(this.ShieldLabel);
@@ -254,12 +264,12 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.panel1.Size = new System.Drawing.Size(255, 145);
             this.panel1.TabIndex = 16;
             // 
-            // pnl_GAMEDetected
+            // pnl_XPstatus
             // 
-            this.pnl_GAMEDetected.Location = new System.Drawing.Point(31, 3);
-            this.pnl_GAMEDetected.Name = "pnl_GAMEDetected";
-            this.pnl_GAMEDetected.Size = new System.Drawing.Size(23, 20);
-            this.pnl_GAMEDetected.TabIndex = 16;
+            this.pnl_XPstatus.Location = new System.Drawing.Point(196, 108);
+            this.pnl_XPstatus.Name = "pnl_XPstatus";
+            this.pnl_XPstatus.Size = new System.Drawing.Size(20, 20);
+            this.pnl_XPstatus.TabIndex = 16;
             // 
             // panel2
             // 
@@ -282,7 +292,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             // 
             this.MoneyButton.Location = new System.Drawing.Point(165, 186);
             this.MoneyButton.Name = "MoneyButton";
-            this.MoneyButton.Size = new System.Drawing.Size(45, 21);
+            this.MoneyButton.Size = new System.Drawing.Size(51, 21);
             this.MoneyButton.TabIndex = 20;
             this.MoneyButton.Text = "SEND";
             this.MoneyButton.UseVisualStyleBackColor = true;
@@ -316,7 +326,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             // 
             this.KeysButton.Location = new System.Drawing.Point(165, 213);
             this.KeysButton.Name = "KeysButton";
-            this.KeysButton.Size = new System.Drawing.Size(45, 21);
+            this.KeysButton.Size = new System.Drawing.Size(51, 21);
             this.KeysButton.TabIndex = 23;
             this.KeysButton.Text = "SEND";
             this.KeysButton.UseVisualStyleBackColor = true;
@@ -347,7 +357,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             // 
             this.XPButton.Location = new System.Drawing.Point(165, 159);
             this.XPButton.Name = "XPButton";
-            this.XPButton.Size = new System.Drawing.Size(45, 21);
+            this.XPButton.Size = new System.Drawing.Size(51, 21);
             this.XPButton.TabIndex = 26;
             this.XPButton.Text = "SEND";
             this.XPButton.UseVisualStyleBackColor = true;
@@ -367,7 +377,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(103)))), ((int)(((byte)(0)))));
-            this.checkBox1.Location = new System.Drawing.Point(6, 256);
+            this.checkBox1.Location = new System.Drawing.Point(6, 341);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(218, 24);
             this.checkBox1.TabIndex = 28;
@@ -390,7 +400,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(103)))), ((int)(((byte)(0)))));
-            this.checkBox2.Location = new System.Drawing.Point(6, 234);
+            this.checkBox2.Location = new System.Drawing.Point(6, 323);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(175, 24);
             this.checkBox2.TabIndex = 29;
@@ -398,24 +408,129 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
+            this.label7.Location = new System.Drawing.Point(8, 239);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(112, 20);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Skill Points:";
+            // 
+            // SkillPointsButton
+            // 
+            this.SkillPointsButton.Location = new System.Drawing.Point(165, 239);
+            this.SkillPointsButton.Name = "SkillPointsButton";
+            this.SkillPointsButton.Size = new System.Drawing.Size(51, 21);
+            this.SkillPointsButton.TabIndex = 31;
+            this.SkillPointsButton.Text = "SEND";
+            this.SkillPointsButton.UseVisualStyleBackColor = true;
+            this.SkillPointsButton.Click += new System.EventHandler(this.SkillPointsButton_Click);
+            // 
+            // SkillpointstextBox
+            // 
+            this.SkillpointstextBox.Location = new System.Drawing.Point(125, 239);
+            this.SkillpointstextBox.MaxLength = 2;
+            this.SkillpointstextBox.Name = "SkillpointstextBox";
+            this.SkillpointstextBox.Size = new System.Drawing.Size(34, 20);
+            this.SkillpointstextBox.TabIndex = 30;
+            this.SkillpointstextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // XPMultiplyComboBox
+            // 
+            this.XPMultiplyComboBox.FormattingEnabled = true;
+            this.XPMultiplyComboBox.Location = new System.Drawing.Point(137, 262);
+            this.XPMultiplyComboBox.Name = "XPMultiplyComboBox";
+            this.XPMultiplyComboBox.Size = new System.Drawing.Size(54, 21);
+            this.XPMultiplyComboBox.TabIndex = 33;
+            this.XPMultiplyComboBox.SelectedIndexChanged += new System.EventHandler(this.XPMultiplyComboBox_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
+            this.label9.Location = new System.Drawing.Point(8, 263);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(128, 20);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "XP Multiplier:";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(69)))), ((int)(((byte)(10)))));
+            this.panel3.Location = new System.Drawing.Point(-25, 279);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(257, 10);
+            this.panel3.TabIndex = 35;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.pnl_XPstatus);
+            this.panel4.Location = new System.Drawing.Point(0, 155);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(231, 130);
+            this.panel4.TabIndex = 36;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
+            this.label11.Location = new System.Drawing.Point(9, 291);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(183, 20);
+            this.label11.TabIndex = 37;
+            this.label11.Text = "NO RECOIL (NUM 1)";
+            // 
+            // pnl_NoRecoil
+            // 
+            this.pnl_NoRecoil.Location = new System.Drawing.Point(196, 291);
+            this.pnl_NoRecoil.Name = "pnl_NoRecoil";
+            this.pnl_NoRecoil.Size = new System.Drawing.Size(20, 20);
+            this.pnl_NoRecoil.TabIndex = 38;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(69)))), ((int)(((byte)(10)))));
+            this.panel6.Location = new System.Drawing.Point(-13, 313);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(257, 10);
+            this.panel6.TabIndex = 36;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(74)))));
-            this.ClientSize = new System.Drawing.Size(221, 276);
-            this.Controls.Add(this.KeysTextBox);
-            this.Controls.Add(this.checkBox2);
+            this.ClientSize = new System.Drawing.Size(224, 361);
             this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.pnl_NoRecoil);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.XPMultiplyComboBox);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.SkillPointsButton);
+            this.Controls.Add(this.SkillpointstextBox);
+            this.Controls.Add(this.KeysTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.KeysButton);
             this.Controls.Add(this.XPButton);
             this.Controls.Add(this.XPTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.MoneyButton);
             this.Controls.Add(this.MoneyTextBox);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "Main";
@@ -424,6 +539,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,7 +563,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         private System.Windows.Forms.Label SkillPointsLabel;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel pnl_GAMEDetected;
+        private System.Windows.Forms.Panel pnl_XPstatus;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox MoneyTextBox;
         private System.Windows.Forms.Button MoneyButton;
@@ -462,6 +578,16 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         private System.Windows.Forms.Timer HotKeyTimer;
         private System.Windows.Forms.Timer NoClipTimer;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button SkillPointsButton;
+        private System.Windows.Forms.TextBox SkillpointstextBox;
+        private System.Windows.Forms.ComboBox XPMultiplyComboBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel pnl_NoRecoil;
+        private System.Windows.Forms.Panel panel6;
     }
 }
 
