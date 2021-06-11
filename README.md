@@ -41,7 +41,7 @@ v1.0.1 (6.8.21)
 - Unlimited Health toggle now includes Unlimited Shields and Ammo for most weapon types
 
 ## MEDIA
-![image](https://user-images.githubusercontent.com/80198020/121113312-d16abd80-c7df-11eb-93a0-17420e3544a5.png)
+![image](https://user-images.githubusercontent.com/80198020/121612413-5d6f2600-ca28-11eb-8552-644522e91679.png)
 ![image](https://user-images.githubusercontent.com/80198020/121112725-cd8a6b80-c7de-11eb-9a9f-21d76c0c4dfa.png)
 ![image](https://user-images.githubusercontent.com/80198020/121112768-e266ff00-c7de-11eb-949f-7053271488f3.png)
 
