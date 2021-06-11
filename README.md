@@ -1,5 +1,6 @@
 # Borderlands GOTY Enhanced Trainer (STEAM EDITION)
 Simple Trainer. Highly Customizable source , currently configured to READ memory and allows the user to change some stuff as proof of concept
+For a full list of offsets , scroll to the bottom
 
 ## HOW TO USE
 - Download the source code
@@ -44,6 +45,25 @@ v1.0.1 (6.8.21)
 ![image](https://user-images.githubusercontent.com/80198020/121612413-5d6f2600-ca28-11eb-8552-644522e91679.png)
 ![image](https://user-images.githubusercontent.com/80198020/121112725-cd8a6b80-c7de-11eb-9a9f-21d76c0c4dfa.png)
 ![image](https://user-images.githubusercontent.com/80198020/121112768-e266ff00-c7de-11eb-949f-7053271488f3.png)
+
+## Bugs
+Currently Known Bugs
+```
+Bug: Golden Keys
+Description: Key Amount not matching in game amount
+Possible Reason: I think this simply because the value being sent is updating to what is sent instead of adding to the previous value.
+Possible Fix: Read the value of `GoldenKeyUsed`. When sending keys from trainer , add from Total Keys Used. 
+> 0 Keys
+> 10 Keys Used
+> Adding 11 Keys will give 1 key
+```
+- If you encounter any bugs, open an issue
+- You may also send me suggestions
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
 
 ## Offsets
 ```
@@ -126,21 +146,3 @@ ElementalLVL = ???
 ElementalCurrentXP = 0x025C4DA8,0x6D0,0x10,0xDE4	//Int
 ElementalRequiredXP = 0x025C4DA8,0x6D0,0x10,0xDE8	//Int
 ```
-## Bugs
-Currently Known Bugs
-```
-Bug: Golden Keys
-Description: Key Amount not matching in game amount
-Possible Reason: I think this simply because the value being sent is updating to what is sent instead of adding to the previous value.
-Possible Fix: Read the value of `GoldenKeyUsed`. When sending keys from trainer , add from Total Keys Used. 
-> 0 Keys
-> 10 Keys Used
-> Adding 11 Keys will give 1 key
-```
-- If you encounter any bugs, open an issue
-- You may also send me suggestions
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
