@@ -68,9 +68,12 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.pnl_NoRecoil = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.pnl_InfHealth = new System.Windows.Forms.Panel();
+            this.pnl_InfAmmo = new System.Windows.Forms.Panel();
+            this.pnl_InfMoney = new System.Windows.Forms.Panel();
+            this.pnl_InfKeys = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
@@ -476,21 +479,9 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.panel4.Size = new System.Drawing.Size(231, 130);
             this.panel4.TabIndex = 36;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Compacta Blk BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(219)))), ((int)(((byte)(219)))));
-            this.label11.Location = new System.Drawing.Point(9, 291);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(183, 20);
-            this.label11.TabIndex = 37;
-            this.label11.Text = "NO RECOIL (NUM 1)";
-            // 
             // pnl_NoRecoil
             // 
-            this.pnl_NoRecoil.Location = new System.Drawing.Point(196, 291);
+            this.pnl_NoRecoil.Location = new System.Drawing.Point(11, 291);
             this.pnl_NoRecoil.Name = "pnl_NoRecoil";
             this.pnl_NoRecoil.Size = new System.Drawing.Size(20, 20);
             this.pnl_NoRecoil.TabIndex = 38;
@@ -503,16 +494,47 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             this.panel6.Size = new System.Drawing.Size(257, 10);
             this.panel6.TabIndex = 36;
             // 
+            // pnl_InfHealth
+            // 
+            this.pnl_InfHealth.Location = new System.Drawing.Point(57, 291);
+            this.pnl_InfHealth.Name = "pnl_InfHealth";
+            this.pnl_InfHealth.Size = new System.Drawing.Size(20, 20);
+            this.pnl_InfHealth.TabIndex = 39;
+            // 
+            // pnl_InfAmmo
+            // 
+            this.pnl_InfAmmo.Location = new System.Drawing.Point(105, 291);
+            this.pnl_InfAmmo.Name = "pnl_InfAmmo";
+            this.pnl_InfAmmo.Size = new System.Drawing.Size(20, 20);
+            this.pnl_InfAmmo.TabIndex = 40;
+            // 
+            // pnl_InfMoney
+            // 
+            this.pnl_InfMoney.Location = new System.Drawing.Point(152, 291);
+            this.pnl_InfMoney.Name = "pnl_InfMoney";
+            this.pnl_InfMoney.Size = new System.Drawing.Size(20, 20);
+            this.pnl_InfMoney.TabIndex = 41;
+            // 
+            // pnl_InfKeys
+            // 
+            this.pnl_InfKeys.Location = new System.Drawing.Point(196, 291);
+            this.pnl_InfKeys.Name = "pnl_InfKeys";
+            this.pnl_InfKeys.Size = new System.Drawing.Size(20, 20);
+            this.pnl_InfKeys.TabIndex = 42;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(224, 361);
+            this.Controls.Add(this.pnl_InfKeys);
+            this.Controls.Add(this.pnl_InfMoney);
+            this.Controls.Add(this.pnl_InfAmmo);
+            this.Controls.Add(this.pnl_InfHealth);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pnl_NoRecoil);
             this.Controls.Add(this.panel6);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.XPMultiplyComboBox);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -585,9 +607,12 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel pnl_NoRecoil;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel pnl_InfHealth;
+        private System.Windows.Forms.Panel pnl_InfAmmo;
+        private System.Windows.Forms.Panel pnl_InfMoney;
+        private System.Windows.Forms.Panel pnl_InfKeys;
     }
 }
 

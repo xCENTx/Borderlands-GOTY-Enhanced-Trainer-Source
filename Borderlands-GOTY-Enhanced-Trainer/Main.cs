@@ -7,7 +7,7 @@ using System;
 using Memory;
 
 ///---=>xCENTx<=--- \\\
-///---=>#8016<=--- \\\
+///---=>#0001<=--- \\\
 
 /// ||-FUNCTIONS-|| \\\
 /// // 
@@ -27,10 +27,10 @@ using Memory;
 /// //
 /// NUMPAD 0 = REFILL HEALTH , SHIELDS & AMMO ||
 /// NUMPAD 1 = NO RECOIL TOGGLE ||
-/// NUMPAD 2 = EMPTY ||
-/// NUMPAD 3 = EMPTY ||
-/// NUMPAD 4 = EMPTY ||
-/// NUMPAD 5 = EMPTY ||
+/// NUMPAD 2 = INF HEALTH, SHIELDS & SKILL TIME ||
+/// NUMPAD 3 = INF AMMO ||
+/// NUMPAD 4 = INF MONEY ||
+/// NUMPAD 5 = INF GOLDEN KEYS ||
 /// NUMPAD 6 = EMPTY ||
 /// NUMPAD 7 = EMPTY ||
 /// NUMPAD 8 = EMPTY ||
@@ -46,11 +46,18 @@ namespace Borderlands_GOTY_Enhanced_Trainer
 
         //Memory.dll
         Mem m = new Mem();
+        bool BLRunning = false;
         private const string BORDERLANDSPROCESS = "BorderlandsGOTY.exe";
 
         //Hotkey Usage
         [DllImport("user32.dll")]
         static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
+
+        //Numpad Stuff
+        bool HealthToggled = false;
+        bool AmmoToggled = false;
+        bool MoneyToggled = false;
+        bool KeysToggled = false;
 
         //XP Multiplier
         public class XP
@@ -152,6 +159,10 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             public const string NoRecoilAddress = "BorderlandsGOTY.exe+1412B05";
         }
 
+        public class Variables
+        {
+
+        }
         #endregion
 
         ///Main Form & XP ComboBox
@@ -249,6 +260,7 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             if (PID > 0)
             {
                 m.OpenProcess(PID);
+                BLRunning = true;
                 CurrentLvLabel.Text = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Level}").ToString();
                 MoneyLabel.Text = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Money}").ToString();
                 HealthLabel.Text = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Health}").ToString();
@@ -256,6 +268,10 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 XPLabel.Text = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.Experience}").ToString();
                 SkillPointsLabel.Text = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.SkillPoints}").ToString();
                 GoldenKeysLabel.Text = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}").ToString();
+            }
+            else
+            {
+                BLRunning = false;
             }
         }
 
@@ -311,7 +327,12 @@ namespace Borderlands_GOTY_Enhanced_Trainer
         //Numpad Functions || 3/4 ACTIVE ||
         private void HotKeyTimer_Tick(object sender, EventArgs e)
         {
-            //Variables
+            if (!BLRunning)
+            {
+                return;
+            }
+
+            ///Variables
             #region
             //Health and Shields
             var maxValueHealth = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.MaxHealth}");
@@ -327,15 +348,49 @@ namespace Borderlands_GOTY_Enhanced_Trainer
             var maxValueLauncher = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.LauncherAmmoMax}");
             var maxValueCarbine = m.ReadFloat($"BorderlandsGOTY.exe+{Offsets.CarbineAmmoMax}");
 
+            //Addresses we don't want to max out
+            var oldMoneyValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.Money}");
+            var oldKeysValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}");
+            var oldUsedKeysValue = m.ReadInt($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}");
+
             //No Recoil Stuff
             var RecoilAddress = m.ReadBytes("BorderlandsGOTY.exe+1412B05", 9);
             var DefaultRecoilValue = new byte[] { 0xF3, 0x44, 0x0F, 0x59, 0xA7, 0xCC, 0x0F, 0x00, 0x00 };
+
+            #endregion
+
+            ///Toggle Indicators
+            #region
+
+            if (!HealthToggled)
+            {
+                pnl_InfHealth.BackColor = Color.FromArgb(150, 0, 0);
+            }
+
+            if (!AmmoToggled)
+            {
+                pnl_InfAmmo.BackColor = Color.FromArgb(150, 0, 0);
+            }
+
+            if (!MoneyToggled)
+            {
+                pnl_InfMoney.BackColor = Color.FromArgb(150, 0, 0);
+            }
+
+            if (!KeysToggled)
+            {
+                pnl_InfKeys.BackColor = Color.FromArgb(150, 0, 0);
+            }
+
             if (RecoilAddress.SequenceEqual(DefaultRecoilValue))
             {
                 pnl_NoRecoil.BackColor = Color.FromArgb(150, 0, 0);
             }
 
             #endregion
+
+            ///Toggle Keys
+            #region
 
             //Refill Health, Shields and Ammo (NUMPAD 0) || ACTIVE ||
             if (GetAsyncKeyState(Keys.NumPad0) < 0)
@@ -367,24 +422,98 @@ namespace Borderlands_GOTY_Enhanced_Trainer
                 else
                 {
                     m.WriteMemory("BorderlandsGOTY.exe+1412B05", "bytes", "F3 44 0F 59 A7 CC 0F 00 00");
-                    pnl_NoRecoil.BackColor = Color.FromArgb(150, 0, 0);
+                    //pnl_NoRecoil.BackColor = Color.FromArgb(150, 0, 0);
                 }
 
             }
 
-            //EMPTY (NUMPAD 2) || INACTIVE ||
+            //INF HEALTH , SHIELDS & SKILL TIME (NUMPAD 2) || ACTIVE ||
             if (GetAsyncKeyState(Keys.NumPad2) < 0)
             {
-
+                HealthToggled = !HealthToggled;
+                if (HealthToggled)
+                {
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Health}", "float", maxValueHealth.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Shield}", "float", maxValueShields.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}", "float", "0");
+                    pnl_InfHealth.BackColor = Color.FromArgb(0, 150, 0);
+                }
+                else
+                {
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Health}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Shield}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SkillCooldown}");
+                }
             }
 
-            //EMPTY (NUMPAD 3) || INACTIVE ||
+            //Infinite Ammo (NUMPAD 3) || ACTIVE ||
             if (GetAsyncKeyState(Keys.NumPad3) < 0)
             {
-
+                AmmoToggled = !AmmoToggled;
+                if (AmmoToggled)
+                {
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}", "float", maxValueCarbine.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}", "float", maxValueGrenades.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}", "float", maxValueRepeater.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}", "float", maxValueRevolver.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}", "float", maxValueSMG.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}", "float", maxValueShells.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}", "float", maxValueSniper.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}", "float", maxValueLauncher.ToString());
+                    pnl_InfAmmo.BackColor = Color.FromArgb(0, 150, 0);
+                }
+                else
+                {
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Health}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Shield}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Grenades}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.RepeaterPistolAmmo}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.RevolverAmmo}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SMGAmmo}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.ShotgunShells}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.SniperRifleAmmo}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.LauncherAmmo}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.CarbineAmmo}");
+                }
             }
+
+            //Infinite Money (NUMPAD 4 Toggle ON/OFF) || ACTIVE ||
+            if (GetAsyncKeyState(Keys.NumPad4) < 0)
+            {
+                MoneyToggled = !MoneyToggled;
+                if (MoneyToggled)
+                {
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.Money}", "int", oldMoneyValue.ToString());
+                    pnl_InfMoney.BackColor = Color.FromArgb(0, 150, 0);
+                }
+                else
+                {
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.Money}");
+                }
+            }
+
+            //Infinite Golden Keys (NUMPAD 5 Toggle ON/OFF) || ACTIVE ||
+            if (GetAsyncKeyState(Keys.NumPad5) < 0)
+            {
+                KeysToggled = !KeysToggled;
+                if (KeysToggled)
+                {
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}", "int", oldKeysValue.ToString());
+                    m.FreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}", "int", oldUsedKeysValue.ToString());
+                    pnl_InfKeys.BackColor = Color.FromArgb(0, 150, 0);
+                }
+                else
+                {
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyUsed}");
+                    m.UnfreezeValue($"BorderlandsGOTY.exe+{Offsets.GoldenKeyTotal}");
+                }
+            }
+
+            #endregion
+
         }
-        
+
         #endregion
 
         ///Buttons
