@@ -3,6 +3,9 @@ Simple Trainer. Highly Customizable source , currently configured to READ memory
 
 For a full list of offsets , scroll to the bottom
 
+6.25.2021 
+THIS IS NO LONGER BEING UPDATED
+
 ## HOW TO USE
 - Download the source code
 - Unzip contents to folder somewhere
@@ -21,11 +24,20 @@ For a full list of offsets , scroll to the bottom
 - Infinite Health and Shields Toggle
 - Infinite Everything Toggle ... (Besides Vehicle Boost and skill time)
 
-HOTKEYS
-- NUMPAD 0 => Refill Health , Shields & Ammo
-- NUMPAD 1 => NO RECOIL (Toggle ON / OFF)
+# HOTKEYS
+NUMPAD 0: REFILL Health, Shields & Ammo
+NUMPAD 1: NO RECOIL
+NUMPAD 2: INFINITE Health, Shields & Skill Time 
+NUMPAD 3: INFINITE Ammo
+NUMPAD 4: INFINITE Money
+NUMPAD 5: INFINITE Golden Keys
 
 ## Minor Updates
+v2.0 (6.25.21) FINAL!! NEW APP ---> link 
+- Added Hotkey Toggles
+- NUMPAD 1 - 5 indicators on form
+* check hotkeys for more info
+
 v1.0.3 (6.10.21)
 - No Recoil Toggle
 - Adjust XP Multiplier 
