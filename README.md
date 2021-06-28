@@ -25,12 +25,12 @@ THIS IS NO LONGER BEING UPDATED
 - Infinite Everything Toggle ... (Besides Vehicle Boost and skill time)
 
 # HOTKEYS
-NUMPAD 0: REFILL Health, Shields & Ammo
-NUMPAD 1: NO RECOIL
-NUMPAD 2: INFINITE Health, Shields & Skill Time 
-NUMPAD 3: INFINITE Ammo
-NUMPAD 4: INFINITE Money
-NUMPAD 5: INFINITE Golden Keys
+- NUMPAD 0: REFILL Health, Shields & Ammo
+- NUMPAD 1: NO RECOIL
+- NUMPAD 2: INFINITE Health, Shields & Skill Time 
+- NUMPAD 3: INFINITE Ammo
+- NUMPAD 4: INFINITE Money
+- NUMPAD 5: INFINITE Golden Keys
 
 ## Minor Updates
 v2.0 (6.25.21) FINAL!! NEW APP ---> link 
